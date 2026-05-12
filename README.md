@@ -51,6 +51,20 @@ The agentic behavior is implemented mainly in:
 - `src/agent/verifier.py`: deterministic safety layer for LLM-proposed actions.
 - `src/agent/trace_logger.py`: per-step JSON traces and summary CSV.
 
+## Why Use an Agentic Scheduler
+
+A normal charging planner can be implemented as a rule, a weighted heuristic, or a mathematical optimizer. Those approaches are valuable, and this project keeps them as baselines. However, shared EV fleet charging is a dynamic operational problem: demand changes by zone, vehicles have different SOC and waiting times, charger availability changes, and operators need decisions that can be explained after the fact.
+
+The agentic design is useful because it combines flexible planning with deterministic control:
+
+- Compared with a fixed rule, the agent can adapt its strategy to the current system state instead of applying the same threshold at every timestep.
+- Compared with a simple weighted heuristic, the agent can express a higher-level operational rationale, such as preserving availability in high-demand zones while using spare charging capacity for shallow top-ups.
+- Compared with a one-shot LLM answer, the agent is safer because every proposed action is schema-checked, constraint-checked, and either repaired or rejected before execution.
+- Compared with a black-box optimizer, the agent produces human-readable traces showing what it observed, what it proposed, what failed validation, and what was finally committed.
+- Compared with directly trusting an LLM, this architecture keeps all numerical calculations in deterministic code, so results remain reproducible and auditable.
+
+In short, the LLM contributes planning flexibility and explanations, while deterministic tools provide the operational truth. This is the central reason for using an agentic architecture rather than a plain prompt or a pure rule-based scheduler.
+
 ## Safety and Reproducibility Principle
 
 The LLM is not the source of truth for numerical simulation.
@@ -244,4 +258,3 @@ Useful references:
 python3 -m src.main
 python3 -m pytest
 ```
-
