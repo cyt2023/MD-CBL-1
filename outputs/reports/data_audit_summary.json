@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "missing_required": [],
+  "datasets": [
+    {
+      "dataset": "dataset_1_od_matrix",
+      "path": "Dataset 1 \u2013 Mobility Demand (Origin\u2013Destination)/eindhoven_od_matrix.csv",
+      "exists": true,
+      "required": true,
+      "delimiter": ",",
+      "rows": 30
+    },
+    {
+      "dataset": "dataset_2_hubs",
+      "path": "Dataset 2 \u2013 Shared Mobility Hubs/Locaties Deelmobiliteit Hubs (punt)/locaties-deelmobiliteit-hubs-punt.csv",
+      "exists": true,
+      "required": true,
+      "delimiter": ";",
+      "rows": 78
+    },
+    {
+      "dataset": "dataset_5_congestion",
+      "path": "Dataset 5 \u2013 Grid Congestion & Constraints/congestie_pc6.csv",
+      "exists": true,
+      "required": true,
+      "delimiter": ";",
+      "rows": 461226
+    },
+    {
+      "dataset": "dataset_6_load",
+      "path": "Dataset 6 \u2013 Electricity Load (Demand)/eindhoven_zonal_load.csv",
+      "exists": true,
+      "required": true,
+      "delimiter": ",",
+      "rows": 1680
+    },
+    {
+      "dataset": "dataset_7_prices",
+      "path": "Dataset 7 \u2013 Electricity Prices/european_wholesale_electricity_price_data_hourly/Netherlands.csv",
+      "exists": true,
+      "required": true,
+      "delimiter": ",",
+      "rows": 95867
+    },
+    {
+      "dataset": "dataset_3_chargers",
+      "path": "Dataset 3 \u2013 Existing EV Charging Points/oplaadpalen.csv",
+      "exists": true,
+      "required": false,
+      "delimiter": ";",
+      "rows": 953
+    }
+  ]
+}

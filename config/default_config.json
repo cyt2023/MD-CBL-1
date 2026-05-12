@@ -1,0 +1,40 @@
+{
+  "random_seed": 42,
+  "simulation_hours": 24,
+  "fleet_size": 50,
+  "number_of_chargers": 10,
+  "battery_capacity_kwh": 60,
+  "charger_power_kw": 22,
+  "min_soc": 0.2,
+  "target_soc": 0.8,
+  "baseline_charge_threshold": 0.35,
+  "trip_energy_kwh": 6,
+  "future_demand_horizon": 3,
+  "llm_agent": {
+    "enabled": true,
+    "provider": "openai_compatible",
+    "model": "configured_by_env",
+    "temperature": 0.2,
+    "max_iterations_per_step": 1,
+    "max_candidate_vehicles": 12,
+    "real_llm_call_interval": 6,
+    "real_llm_min_time_step": 0,
+    "fallback_to_heuristic": true,
+    "log_agent_trace": true
+  },
+  "agent_constraints": {
+    "never_charge_above_target_soc": true,
+    "respect_charger_capacity": true,
+    "respect_zone_charger_availability": true,
+    "do_not_reduce_availability_below_minimum_if_possible": true,
+    "require_json_output": true
+  },
+  "scheduler_weights": {
+    "w_soc": 0.35,
+    "w_demand": 0.25,
+    "w_availability": 0.2,
+    "w_price": 0.1,
+    "w_wait": 0.05,
+    "w_congestion": 0.05
+  }
+}

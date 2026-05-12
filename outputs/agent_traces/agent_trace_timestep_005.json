@@ -1,0 +1,402 @@
+{
+  "planner_role": "LLM or mock planner proposes structured actions only; deterministic code validates and executes.",
+  "deterministic_source_of_truth": {
+    "soc_updates": "simulator",
+    "charging_cost": "simulator",
+    "charger_capacity": "verifier_and_simulator",
+    "constraint_validation": "verifier",
+    "demand_simulation": "simulator",
+    "evaluation_metrics": "evaluation"
+  },
+  "llm_config_summary": {
+    "provider": "qwen",
+    "qwen_protocol": "openai_compatible",
+    "configured": false,
+    "api_key_set": false,
+    "base_url": "https://ws-wlm3jok3dxf4za9f.eu-central-1.maas.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen3.5-flash",
+    "disabled": false,
+    "disabled_reason": ""
+  },
+  "iterations_used": 1,
+  "observation_summary": {
+    "time_step": 5,
+    "electricity_price": 36.56,
+    "available_chargers": 0,
+    "total_chargers": 10,
+    "total_demand": 19.0,
+    "served_demand_so_far": 96.0,
+    "unmet_demand_so_far": 0.0,
+    "zone_status": [
+      {
+        "zone": "Z1",
+        "current_demand": 1,
+        "future_demand": 5.0,
+        "available_vehicles": 4,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z10",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 6,
+        "availability_risk": 0.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z2",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z3",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z4",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z5",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z6",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z7",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z8",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      },
+      {
+        "zone": "Z9",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": []
+      }
+    ],
+    "candidate_vehicles": [
+      {
+        "vehicle_id": "vehicle_015",
+        "zone": "Z7",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_020",
+        "zone": "Z2",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_025",
+        "zone": "Z3",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_030",
+        "zone": "Z5",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_035",
+        "zone": "Z6",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_040",
+        "zone": "Z8",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_045",
+        "zone": "Z9",
+        "soc": 0.347,
+        "waiting_time": 0,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 27.18,
+        "heuristic_priority_score": 0.5026
+      },
+      {
+        "vehicle_id": "vehicle_019",
+        "zone": "Z2",
+        "soc": 0.42,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 22.8,
+        "heuristic_priority_score": 0.497
+      },
+      {
+        "vehicle_id": "vehicle_024",
+        "zone": "Z3",
+        "soc": 0.42,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 22.8,
+        "heuristic_priority_score": 0.497
+      },
+      {
+        "vehicle_id": "vehicle_029",
+        "zone": "Z5",
+        "soc": 0.42,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 22.8,
+        "heuristic_priority_score": 0.497
+      },
+      {
+        "vehicle_id": "vehicle_034",
+        "zone": "Z6",
+        "soc": 0.42,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 22.8,
+        "heuristic_priority_score": 0.497
+      },
+      {
+        "vehicle_id": "vehicle_039",
+        "zone": "Z8",
+        "soc": 0.42,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 22.8,
+        "heuristic_priority_score": 0.497
+      }
+    ]
+  },
+  "candidate_vehicles": [
+    {
+      "vehicle_id": "vehicle_015",
+      "zone": "Z7",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_020",
+      "zone": "Z2",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_025",
+      "zone": "Z3",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_030",
+      "zone": "Z5",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_035",
+      "zone": "Z6",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_040",
+      "zone": "Z8",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_045",
+      "zone": "Z9",
+      "soc": 0.347,
+      "waiting_time": 0,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 27.18,
+      "heuristic_priority_score": 0.5026
+    },
+    {
+      "vehicle_id": "vehicle_019",
+      "zone": "Z2",
+      "soc": 0.42,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 22.8,
+      "heuristic_priority_score": 0.497
+    },
+    {
+      "vehicle_id": "vehicle_024",
+      "zone": "Z3",
+      "soc": 0.42,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 22.8,
+      "heuristic_priority_score": 0.497
+    },
+    {
+      "vehicle_id": "vehicle_029",
+      "zone": "Z5",
+      "soc": 0.42,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 22.8,
+      "heuristic_priority_score": 0.497
+    },
+    {
+      "vehicle_id": "vehicle_034",
+      "zone": "Z6",
+      "soc": 0.42,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 22.8,
+      "heuristic_priority_score": 0.497
+    },
+    {
+      "vehicle_id": "vehicle_039",
+      "zone": "Z8",
+      "soc": 0.42,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 22.8,
+      "heuristic_priority_score": 0.497
+    }
+  ],
+  "llm_raw_json_plan": {
+    "time_step": 5,
+    "strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability.",
+    "actions": [],
+    "rejected_candidates": [
+      "vehicle_015",
+      "vehicle_020",
+      "vehicle_025",
+      "vehicle_030",
+      "vehicle_035",
+      "vehicle_040",
+      "vehicle_045",
+      "vehicle_019",
+      "vehicle_024",
+      "vehicle_029",
+      "vehicle_034",
+      "vehicle_039"
+    ],
+    "risk_notes": [
+      "Fallback mock used deterministic ranking rather than a remote model."
+    ],
+    "expected_effect": "Should improve near-term SOC readiness in high-priority zones.",
+    "_client": "mock_llm",
+    "_primary_llm_error": {
+      "provider": "qwen",
+      "error": "Real LLM call skipped for this time step.",
+      "details": "DASHSCOPE_API_KEY is missing from this Python process."
+    }
+  },
+  "validated_actions": [],
+  "rejected_actions": [],
+  "repair_notes": [],
+  "final_committed_actions": [],
+  "fallback_used": true,
+  "llm_used": false
+}

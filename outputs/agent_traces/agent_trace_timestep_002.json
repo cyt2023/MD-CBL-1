@@ -1,0 +1,745 @@
+{
+  "planner_role": "LLM or mock planner proposes structured actions only; deterministic code validates and executes.",
+  "deterministic_source_of_truth": {
+    "soc_updates": "simulator",
+    "charging_cost": "simulator",
+    "charger_capacity": "verifier_and_simulator",
+    "constraint_validation": "verifier",
+    "demand_simulation": "simulator",
+    "evaluation_metrics": "evaluation"
+  },
+  "llm_config_summary": {
+    "provider": "qwen",
+    "qwen_protocol": "openai_compatible",
+    "configured": false,
+    "api_key_set": false,
+    "base_url": "https://ws-wlm3jok3dxf4za9f.eu-central-1.maas.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen3.5-flash",
+    "disabled": false,
+    "disabled_reason": ""
+  },
+  "iterations_used": 1,
+  "observation_summary": {
+    "time_step": 2,
+    "electricity_price": 36.56,
+    "available_chargers": 10,
+    "total_chargers": 10,
+    "total_demand": 19.0,
+    "served_demand_so_far": 39.0,
+    "unmet_demand_so_far": 0.0,
+    "zone_status": [
+      {
+        "zone": "Z1",
+        "current_demand": 1,
+        "future_demand": 3.0,
+        "available_vehicles": 4,
+        "availability_risk": 0.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_000"
+        ]
+      },
+      {
+        "zone": "Z10",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 6,
+        "availability_risk": 0.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_001"
+        ]
+      },
+      {
+        "zone": "Z2",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_002"
+        ]
+      },
+      {
+        "zone": "Z3",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_003"
+        ]
+      },
+      {
+        "zone": "Z4",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_004"
+        ]
+      },
+      {
+        "zone": "Z5",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_005"
+        ]
+      },
+      {
+        "zone": "Z6",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_006"
+        ]
+      },
+      {
+        "zone": "Z7",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_007"
+        ]
+      },
+      {
+        "zone": "Z8",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_008"
+        ]
+      },
+      {
+        "zone": "Z9",
+        "current_demand": 2,
+        "future_demand": 6.0,
+        "available_vehicles": 5,
+        "availability_risk": 1.0,
+        "congestion": 0.8,
+        "available_charger_ids": [
+          "charger_009"
+        ]
+      }
+    ],
+    "candidate_vehicles": [
+      {
+        "vehicle_id": "vehicle_011",
+        "zone": "Z7",
+        "soc": 0.39,
+        "waiting_time": 5,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5375
+      },
+      {
+        "vehicle_id": "vehicle_031",
+        "zone": "Z6",
+        "soc": 0.39,
+        "waiting_time": 5,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5375
+      },
+      {
+        "vehicle_id": "vehicle_006",
+        "zone": "Z4",
+        "soc": 0.39,
+        "waiting_time": 4,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5275
+      },
+      {
+        "vehicle_id": "vehicle_026",
+        "zone": "Z5",
+        "soc": 0.39,
+        "waiting_time": 4,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5275
+      },
+      {
+        "vehicle_id": "vehicle_021",
+        "zone": "Z3",
+        "soc": 0.39,
+        "waiting_time": 3,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5175
+      },
+      {
+        "vehicle_id": "vehicle_041",
+        "zone": "Z9",
+        "soc": 0.39,
+        "waiting_time": 3,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5175
+      },
+      {
+        "vehicle_id": "vehicle_001",
+        "zone": "Z10",
+        "soc": 0.39,
+        "waiting_time": 3,
+        "future_demand": 6.0,
+        "availability_risk": 0.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5135
+      },
+      {
+        "vehicle_id": "vehicle_016",
+        "zone": "Z2",
+        "soc": 0.39,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5075
+      },
+      {
+        "vehicle_id": "vehicle_036",
+        "zone": "Z8",
+        "soc": 0.39,
+        "waiting_time": 2,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 24.6,
+        "heuristic_priority_score": 0.5075
+      },
+      {
+        "vehicle_id": "vehicle_007",
+        "zone": "Z4",
+        "soc": 0.5,
+        "waiting_time": 5,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 18.0,
+        "heuristic_priority_score": 0.499
+      },
+      {
+        "vehicle_id": "vehicle_027",
+        "zone": "Z5",
+        "soc": 0.5,
+        "waiting_time": 5,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 18.0,
+        "heuristic_priority_score": 0.499
+      },
+      {
+        "vehicle_id": "vehicle_022",
+        "zone": "Z3",
+        "soc": 0.5,
+        "waiting_time": 4,
+        "future_demand": 6.0,
+        "availability_risk": 1.0,
+        "estimated_energy_needed_kwh": 18.0,
+        "heuristic_priority_score": 0.489
+      }
+    ]
+  },
+  "candidate_vehicles": [
+    {
+      "vehicle_id": "vehicle_011",
+      "zone": "Z7",
+      "soc": 0.39,
+      "waiting_time": 5,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5375
+    },
+    {
+      "vehicle_id": "vehicle_031",
+      "zone": "Z6",
+      "soc": 0.39,
+      "waiting_time": 5,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5375
+    },
+    {
+      "vehicle_id": "vehicle_006",
+      "zone": "Z4",
+      "soc": 0.39,
+      "waiting_time": 4,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5275
+    },
+    {
+      "vehicle_id": "vehicle_026",
+      "zone": "Z5",
+      "soc": 0.39,
+      "waiting_time": 4,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5275
+    },
+    {
+      "vehicle_id": "vehicle_021",
+      "zone": "Z3",
+      "soc": 0.39,
+      "waiting_time": 3,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5175
+    },
+    {
+      "vehicle_id": "vehicle_041",
+      "zone": "Z9",
+      "soc": 0.39,
+      "waiting_time": 3,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5175
+    },
+    {
+      "vehicle_id": "vehicle_001",
+      "zone": "Z10",
+      "soc": 0.39,
+      "waiting_time": 3,
+      "future_demand": 6.0,
+      "availability_risk": 0.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5135
+    },
+    {
+      "vehicle_id": "vehicle_016",
+      "zone": "Z2",
+      "soc": 0.39,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5075
+    },
+    {
+      "vehicle_id": "vehicle_036",
+      "zone": "Z8",
+      "soc": 0.39,
+      "waiting_time": 2,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 24.6,
+      "heuristic_priority_score": 0.5075
+    },
+    {
+      "vehicle_id": "vehicle_007",
+      "zone": "Z4",
+      "soc": 0.5,
+      "waiting_time": 5,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 18.0,
+      "heuristic_priority_score": 0.499
+    },
+    {
+      "vehicle_id": "vehicle_027",
+      "zone": "Z5",
+      "soc": 0.5,
+      "waiting_time": 5,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 18.0,
+      "heuristic_priority_score": 0.499
+    },
+    {
+      "vehicle_id": "vehicle_022",
+      "zone": "Z3",
+      "soc": 0.5,
+      "waiting_time": 4,
+      "future_demand": 6.0,
+      "availability_risk": 1.0,
+      "estimated_energy_needed_kwh": 18.0,
+      "heuristic_priority_score": 0.489
+    }
+  ],
+  "llm_raw_json_plan": {
+    "time_step": 2,
+    "strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability.",
+    "actions": [
+      {
+        "vehicle_id": "vehicle_011",
+        "charger_id": "charger_007",
+        "zone": "Z7",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_031",
+        "charger_id": "charger_006",
+        "zone": "Z6",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_006",
+        "charger_id": "charger_004",
+        "zone": "Z4",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_026",
+        "charger_id": "charger_005",
+        "zone": "Z5",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_021",
+        "charger_id": "charger_003",
+        "zone": "Z3",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_041",
+        "charger_id": "charger_009",
+        "zone": "Z9",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_001",
+        "charger_id": "charger_001",
+        "zone": "Z10",
+        "target_soc": 0.66,
+        "planned_duration_hours": 0.736,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_016",
+        "charger_id": "charger_002",
+        "zone": "Z2",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      },
+      {
+        "vehicle_id": "vehicle_036",
+        "charger_id": "charger_008",
+        "zone": "Z8",
+        "target_soc": 0.72,
+        "planned_duration_hours": 0.9,
+        "reasoning_summary": "Deterministic mock selected the highest-priority candidate."
+      }
+    ],
+    "rejected_candidates": [
+      "vehicle_007",
+      "vehicle_027",
+      "vehicle_022"
+    ],
+    "risk_notes": [
+      "Fallback mock used deterministic ranking rather than a remote model."
+    ],
+    "expected_effect": "Should improve near-term SOC readiness in high-priority zones.",
+    "_client": "mock_llm",
+    "_primary_llm_error": {
+      "provider": "qwen",
+      "error": "Real LLM call skipped for this time step.",
+      "details": "DASHSCOPE_API_KEY is missing from this Python process."
+    }
+  },
+  "validated_actions": [
+    {
+      "vehicle_id": "vehicle_011",
+      "charger_id": "charger_007",
+      "zone": "Z7",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_031",
+      "charger_id": "charger_006",
+      "zone": "Z6",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_006",
+      "charger_id": "charger_004",
+      "zone": "Z4",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_026",
+      "charger_id": "charger_005",
+      "zone": "Z5",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_021",
+      "charger_id": "charger_003",
+      "zone": "Z3",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_041",
+      "charger_id": "charger_009",
+      "zone": "Z9",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_001",
+      "charger_id": "charger_001",
+      "zone": "Z10",
+      "target_soc": 0.66,
+      "planned_duration_hours": 0.736,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_016",
+      "charger_id": "charger_002",
+      "zone": "Z2",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    },
+    {
+      "vehicle_id": "vehicle_036",
+      "charger_id": "charger_008",
+      "zone": "Z8",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null
+    }
+  ],
+  "rejected_actions": [],
+  "repair_notes": [],
+  "final_committed_actions": [
+    {
+      "vehicle_id": "vehicle_011",
+      "charger_id": "charger_007",
+      "zone": "Z7",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_031",
+      "charger_id": "charger_006",
+      "zone": "Z6",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_006",
+      "charger_id": "charger_004",
+      "zone": "Z4",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_026",
+      "charger_id": "charger_005",
+      "zone": "Z5",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_021",
+      "charger_id": "charger_003",
+      "zone": "Z3",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_041",
+      "charger_id": "charger_009",
+      "zone": "Z9",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_001",
+      "charger_id": "charger_001",
+      "zone": "Z10",
+      "target_soc": 0.66,
+      "planned_duration_hours": 0.736,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_016",
+      "charger_id": "charger_002",
+      "zone": "Z2",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_036",
+      "charger_id": "charger_008",
+      "zone": "Z8",
+      "target_soc": 0.72,
+      "planned_duration_hours": 0.9,
+      "reasoning_summary": "Deterministic mock selected the highest-priority candidate.",
+      "is_valid": true,
+      "validation_errors": [],
+      "repaired_from_original": null,
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "heuristic_priority_score": 0.0,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability."
+    },
+    {
+      "vehicle_id": "vehicle_007",
+      "charger_id": "charger_000",
+      "zone": "Z1",
+      "target_soc": 0.71,
+      "planned_duration_hours": 0.573,
+      "reasoning_summary": "Heuristic score prioritised this vehicle for charging. Deterministic support layer used shallow charging to fill unused safe capacity.",
+      "agent_used": "agentic_llm",
+      "llm_used": false,
+      "fallback_used": false,
+      "validation_errors": "",
+      "heuristic_priority_score": 0.499,
+      "agent_strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability. Deterministic support layer supplemented the plan to protect availability."
+    }
+  ],
+  "fallback_used": false,
+  "llm_used": false
+}

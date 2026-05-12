@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vendor/
+.DS_Store
+
+# Large raw source file exceeds GitHub's regular file-size limit.
+Dataset 7 – Electricity Prices/european_wholesale_electricity_price_data_hourly/all_countries.csv
