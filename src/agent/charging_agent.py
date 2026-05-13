@@ -72,9 +72,15 @@ class AgenticChargingPlanner:
             charger = chargers_by_id.get(decision["charger_id"])
             if vehicle and charger:
                 current_soc = float(vehicle["soc"])
+                zone = vehicle["zone"]
+                current_zone_demand = float(state["current_demand_by_zone"].get(zone, 0.0))
                 future_zone_demand = float(state["future_demand_by_zone"].get(vehicle["zone"], 0.0))
-                available_zone_vehicles = float(state["available_vehicles_by_zone"].get(vehicle["zone"], 0.0))
+                available_zone_vehicles = float(state["available_vehicles_by_zone"].get(zone, 0.0))
+                zone_spare_after_charging = available_zone_vehicles - current_zone_demand - 1.0
                 urgent_gap = max(0.0, future_zone_demand - available_zone_vehicles)
+                emergency_low_soc = current_soc < 0.24
+                if zone_spare_after_charging < 0.0 and not emergency_low_soc and urgent_gap < 1.0:
+                    continue
                 staged_target = 0.66
                 if urgent_gap >= 1.0:
                     staged_target = 0.71
@@ -103,6 +109,63 @@ class AgenticChargingPlanner:
             used_vehicles.add(decision["vehicle_id"])
             used_chargers.add(decision["charger_id"])
         return completed_plan
+
+    def _refine_actions_for_price_and_availability(
+        self,
+        state: Dict[str, object],
+        planned_decisions: List[Dict[str, object]],
+    ) -> List[Dict[str, object]]:
+        price_series = [float(price) for price in state.get("price_series", [])]
+        if not price_series or not planned_decisions:
+            return planned_decisions
+        if max(price_series) - min(price_series) < 1e-9:
+            return planned_decisions
+        current_price = float(state["electricity_price"])
+        sorted_prices = sorted(price_series)
+        average_price = sum(price_series) / max(len(price_series), 1)
+        high_price = sorted_prices[int(0.75 * (len(sorted_prices) - 1))]
+        low_price = sorted_prices[int(0.35 * (len(sorted_prices) - 1))]
+        vehicles_by_id = {vehicle["vehicle_id"]: vehicle for vehicle in state["vehicles"]}
+        chargers_by_id = {charger["charger_id"]: charger for charger in state["chargers"]}
+        refined: List[Dict[str, object]] = []
+
+        for decision in planned_decisions:
+            vehicle = vehicles_by_id.get(decision["vehicle_id"])
+            charger = chargers_by_id.get(decision["charger_id"])
+            if not vehicle or not charger:
+                continue
+            current_soc = float(vehicle["soc"])
+            zone = vehicle["zone"]
+            future_zone_demand = float(state["future_demand_by_zone"].get(zone, 0.0))
+            available_zone_vehicles = float(state["available_vehicles_by_zone"].get(zone, 0.0))
+            urgent_gap = max(0.0, future_zone_demand - available_zone_vehicles)
+            urgent = current_soc < 0.34 or urgent_gap >= 0.5 or state["unmet_demand_so_far"] > 0
+            if current_price >= high_price and not urgent:
+                continue
+
+            target_soc = 0.66
+            if current_price <= low_price:
+                target_soc = 0.73 if urgent else 0.67
+            elif current_price <= average_price:
+                target_soc = 0.71 if urgent else 0.66
+            elif urgent:
+                target_soc = 0.7 if current_soc < 0.3 or urgent_gap >= 1.0 else 0.68
+
+            target_soc = min(float(decision["target_soc"]), target_soc, float(self.config["target_soc"]))
+            target_soc = max(current_soc + 0.05, target_soc) if urgent else max(current_soc + 0.04, target_soc)
+            if target_soc <= current_soc:
+                continue
+            energy_needed_kwh = max(0.0, (target_soc - current_soc) * float(vehicle["battery_capacity_kwh"]))
+            duration = round(max(0.05, min(1.0, energy_needed_kwh / max(float(charger["power_kw"]), 1e-9))), 3)
+            refined_decision = dict(decision)
+            refined_decision["target_soc"] = round(target_soc, 3)
+            refined_decision["planned_duration_hours"] = duration
+            refined_decision["reasoning_summary"] = (
+                refined_decision.get("reasoning_summary", "")
+                + " Price-aware refinement adjusted depth or deferred non-urgent charging."
+            ).strip()
+            refined.append(refined_decision)
+        return refined
 
     def _call_planner(self, observation_prompt: str, schema: dict) -> Dict[str, object]:
         if self.config["llm_agent"]["enabled"] and self._should_use_real_llm():
@@ -202,6 +265,7 @@ class AgenticChargingPlanner:
             "Fallback to deterministic strategy after validation failures.",
         )
         if not fallback_used:
+            final_decisions = self._refine_actions_for_price_and_availability(state, final_decisions)
             final_decisions = self._merge_with_heuristic_support(state, final_decisions, strategy_summary)
         for decision in final_decisions:
             decision.setdefault("agent_used", "agentic_llm")

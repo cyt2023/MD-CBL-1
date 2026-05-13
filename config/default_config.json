@@ -17,7 +17,7 @@
     "temperature": 0.2,
     "max_iterations_per_step": 1,
     "max_candidate_vehicles": 12,
-    "real_llm_call_interval": 6,
+    "real_llm_call_interval": 3,
     "real_llm_min_time_step": 0,
     "fallback_to_heuristic": true,
     "log_agent_trace": true

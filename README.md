@@ -2,7 +2,7 @@
 
 [中文说明 / Chinese README](README_CN.md)
 
-A reproducible, data-driven charging scheduler for shared mobility and rental EV fleets in Eindhoven. The project compares three charging strategies and adds an agentic LLM planner that proposes charging actions, while deterministic software remains the source of truth for simulation, validation, cost, and evaluation.
+A reproducible, data-driven charging scheduler for shared mobility and rental EV fleets in Eindhoven. The project compares four charging strategies and adds an agentic LLM planner that proposes charging actions, while deterministic software remains the source of truth for simulation, validation, cost, and evaluation.
 
 ## Project Goal
 
@@ -68,6 +68,19 @@ The agentic design is useful because it combines flexible planning with determin
 - Compared with directly trusting an LLM, this architecture keeps all numerical calculations in deterministic code, so results remain reproducible and auditable.
 
 In short, the LLM contributes planning flexibility and explanations, while deterministic tools provide the operational truth. This is the central reason for using an agentic architecture rather than a plain prompt or a pure rule-based scheduler.
+
+## Optimization Strategy
+
+The scheduler is optimized as a guarded multi-objective system rather than a pure cost minimizer. This matters because simply reducing charging can make cost look better while increasing unmet demand. The implemented optimization therefore balances cost, useful charged energy, demand coverage, availability, and charger congestion.
+
+Recent optimization features include:
+
+- More frequent real LLM planning when configured: the default real LLM call interval is every 3 timesteps, while deterministic fallback remains available.
+- Availability-aware support charging: the deterministic support layer avoids taking vehicles out of service in zones that are already short of vehicles, unless SOC risk or future demand risk is high.
+- Optional price-aware refinement: if a non-constant electricity price window is configured, non-urgent charging can be deferred during high-price periods and shallow charging can be increased during lower-price periods.
+- Reproducible price-window selection: by default the project uses the first data window, but `price_window_strategy = "first_variable_positive"` can be enabled in `config/default_config.json` for experiments with a realistic variable-price day.
+
+The default reported results keep the conservative reproducible setting. Price-aware experiments are supported, but they should be reported as a separate scenario because changing the electricity price window changes the experimental setting for every scheduler.
 
 ## Safety and Reproducibility Principle
 

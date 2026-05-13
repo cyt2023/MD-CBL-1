@@ -21,6 +21,23 @@ def _parse_timestamp(value: str) -> datetime:
     raise ValueError(f"Unsupported timestamp format: {value}")
 
 
+def _select_price_window(prices: List[float], hours: int, config: Dict[str, object]) -> List[float]:
+    if len(prices) <= hours:
+        return prices[:]
+    strategy = str(config.get("price_window_strategy", "first")).strip().lower()
+    if strategy != "first_variable_positive":
+        return prices[:hours]
+
+    min_unique = int(config.get("price_window_min_unique_prices", 6))
+    min_spread = float(config.get("price_window_min_spread_eur_mwh", 10.0))
+    for start in range(0, len(prices) - hours + 1):
+        window = prices[start : start + hours]
+        unique_count = len({round(price, 3) for price in window})
+        if min(window) >= 0.0 and unique_count >= min_unique and (max(window) - min(window)) >= min_spread:
+            return window
+    return prices[:hours]
+
+
 def preprocess_inputs(raw_data: Dict[str, object], config: Dict[str, object]) -> Dict[str, object]:
     zonal_load = raw_data["zonal_load"]
     zones = sorted({row["zone_id"] for row in zonal_load if row.get("zone_id")})
@@ -39,7 +56,8 @@ def preprocess_inputs(raw_data: Dict[str, object], config: Dict[str, object]) ->
         )
 
     prices = raw_data["prices"]
-    price_series = [_safe_float(row["Price (EUR/MWhe)"]) for row in prices[:hours]]
+    all_prices = [_safe_float(row["Price (EUR/MWhe)"]) for row in prices]
+    price_series = _select_price_window(all_prices, hours, config)
     if len(price_series) < hours:
         price_series.extend([price_series[-1] if price_series else 50.0] * (hours - len(price_series)))
 
