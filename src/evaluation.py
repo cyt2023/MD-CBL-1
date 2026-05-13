@@ -20,6 +20,9 @@ def evaluate_results(simulation_results: Dict[str, Dict[str, object]], project_r
     baseline_rows = simulation_results["baseline"]["timeseries"]
     baseline_cost = baseline_rows[-1]["cumulative_cost_eur"] if baseline_rows else 0.0
     baseline_unmet = baseline_rows[-1]["cumulative_unmet_demand"] if baseline_rows else 0
+    nearest_rows = simulation_results.get("nearest_available", {}).get("timeseries", [])
+    nearest_cost = nearest_rows[-1]["cumulative_cost_eur"] if nearest_rows else baseline_cost
+    nearest_unmet = nearest_rows[-1]["cumulative_unmet_demand"] if nearest_rows else baseline_unmet
     summary_rows: List[Dict[str, object]] = []
 
     for mode, result in simulation_results.items():
@@ -35,6 +38,8 @@ def evaluate_results(simulation_results: Dict[str, Dict[str, object]], project_r
         min_soc = min((row["minimum_soc"] for row in rows), default=0.0)
         cost_reduction = round(((baseline_cost - total_cost) / baseline_cost) * 100, 2) if baseline_cost else 0.0
         unmet_reduction = round(((baseline_unmet - total_unmet) / baseline_unmet) * 100, 2) if baseline_unmet else 0.0
+        cost_reduction_vs_nearest = round(((nearest_cost - total_cost) / nearest_cost) * 100, 2) if nearest_cost else 0.0
+        unmet_reduction_vs_nearest = round(((nearest_unmet - total_unmet) / nearest_unmet) * 100, 2) if nearest_unmet else 0.0
         operational_score = round(
             (avg_availability * 40)
             + ((1.0 - min(total_cost / max(baseline_cost, 1.0), 2.0)) * 20)
@@ -51,9 +56,11 @@ def evaluate_results(simulation_results: Dict[str, Dict[str, object]], project_r
                 "cost_per_kwh_eur": round(total_cost / total_energy, 4) if total_energy else 0.0,
                 "kwh_per_eur": round(total_energy / total_cost, 3) if total_cost else 0.0,
                 "percentage_cost_reduction_vs_baseline": cost_reduction,
+                "percentage_cost_reduction_vs_nearest_available": cost_reduction_vs_nearest,
                 "average_vehicle_availability": avg_availability,
                 "total_unmet_demand": total_unmet,
                 "unmet_demand_reduction_vs_baseline": unmet_reduction,
+                "unmet_demand_reduction_vs_nearest_available": unmet_reduction_vs_nearest,
                 "average_charger_utilization": avg_utilization,
                 "peak_charger_utilization": peak_utilization,
                 "total_waiting_vehicle_hours": waiting_vehicle_hours,

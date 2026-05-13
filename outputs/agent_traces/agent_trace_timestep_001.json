@@ -18,350 +18,138 @@
     "disabled": false,
     "disabled_reason": ""
   },
-  "iterations_used": 1,
+  "iterations_used": 2,
   "observation_summary": {
     "time_step": 1,
-    "electricity_price": 36.56,
+    "electricity_price": 60.0,
     "available_chargers": 0,
-    "total_chargers": 10,
-    "total_demand": 19.0,
-    "served_demand_so_far": 20.0,
+    "total_chargers": 2,
+    "total_demand": 3.0,
+    "served_demand_so_far": 3.0,
     "unmet_demand_so_far": 0.0,
     "zone_status": [
       {
         "zone": "Z1",
-        "current_demand": 1,
-        "future_demand": 3.0,
+        "current_demand": 2,
+        "future_demand": 2.0,
         "available_vehicles": 4,
         "availability_risk": 0.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z10",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 6,
-        "availability_risk": 0.0,
-        "congestion": 0.8,
+        "congestion": 1.3,
         "available_charger_ids": []
       },
       {
         "zone": "Z2",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z3",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z4",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z5",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z6",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z7",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z8",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
-        "available_charger_ids": []
-      },
-      {
-        "zone": "Z9",
-        "current_demand": 2,
-        "future_demand": 6.0,
-        "available_vehicles": 5,
-        "availability_risk": 1.0,
-        "congestion": 0.8,
+        "current_demand": 1,
+        "future_demand": 1.0,
+        "available_vehicles": 2,
+        "availability_risk": 0.0,
+        "congestion": 1.8,
         "available_charger_ids": []
       }
     ],
     "candidate_vehicles": [
       {
-        "vehicle_id": "vehicle_011",
-        "zone": "Z7",
-        "soc": 0.39,
-        "waiting_time": 4,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5275
-      },
-      {
-        "vehicle_id": "vehicle_031",
-        "zone": "Z6",
-        "soc": 0.39,
-        "waiting_time": 4,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5275
-      },
-      {
-        "vehicle_id": "vehicle_006",
-        "zone": "Z4",
-        "soc": 0.39,
-        "waiting_time": 3,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5175
-      },
-      {
-        "vehicle_id": "vehicle_026",
-        "zone": "Z5",
-        "soc": 0.39,
-        "waiting_time": 3,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5175
-      },
-      {
-        "vehicle_id": "vehicle_021",
-        "zone": "Z3",
-        "soc": 0.39,
-        "waiting_time": 2,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5075
-      },
-      {
-        "vehicle_id": "vehicle_041",
-        "zone": "Z9",
-        "soc": 0.39,
-        "waiting_time": 2,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5075
-      },
-      {
         "vehicle_id": "vehicle_001",
-        "zone": "Z10",
+        "zone": "Z1",
         "soc": 0.39,
         "waiting_time": 2,
-        "future_demand": 6.0,
+        "future_demand": 2.0,
         "availability_risk": 0.0,
         "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.5035
+        "heuristic_priority_score": 0.516
       },
       {
-        "vehicle_id": "vehicle_016",
+        "vehicle_id": "vehicle_002",
+        "zone": "Z1",
+        "soc": 0.4,
+        "waiting_time": 0,
+        "future_demand": 2.0,
+        "availability_risk": 0.0,
+        "estimated_energy_needed_kwh": 24.0,
+        "heuristic_priority_score": 0.4925
+      },
+      {
+        "vehicle_id": "vehicle_003",
+        "zone": "Z1",
+        "soc": 0.51,
+        "waiting_time": 0,
+        "future_demand": 2.0,
+        "availability_risk": 0.0,
+        "estimated_energy_needed_kwh": 17.4,
+        "heuristic_priority_score": 0.454
+      },
+      {
+        "vehicle_id": "vehicle_000",
+        "zone": "Z1",
+        "soc": 0.647,
+        "waiting_time": 1,
+        "future_demand": 2.0,
+        "availability_risk": 0.0,
+        "estimated_energy_needed_kwh": 9.18,
+        "heuristic_priority_score": 0.4161
+      },
+      {
+        "vehicle_id": "vehicle_005",
         "zone": "Z2",
-        "soc": 0.39,
-        "waiting_time": 1,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.4975
-      },
-      {
-        "vehicle_id": "vehicle_036",
-        "zone": "Z8",
-        "soc": 0.39,
-        "waiting_time": 1,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 24.6,
-        "heuristic_priority_score": 0.4975
-      },
-      {
-        "vehicle_id": "vehicle_007",
-        "zone": "Z4",
-        "soc": 0.5,
-        "waiting_time": 4,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 18.0,
-        "heuristic_priority_score": 0.489
-      },
-      {
-        "vehicle_id": "vehicle_027",
-        "zone": "Z5",
-        "soc": 0.5,
-        "waiting_time": 4,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 18.0,
-        "heuristic_priority_score": 0.489
-      },
-      {
-        "vehicle_id": "vehicle_022",
-        "zone": "Z3",
-        "soc": 0.5,
-        "waiting_time": 3,
-        "future_demand": 6.0,
-        "availability_risk": 1.0,
-        "estimated_energy_needed_kwh": 18.0,
-        "heuristic_priority_score": 0.479
+        "soc": 0.647,
+        "waiting_time": 2,
+        "future_demand": 1.0,
+        "availability_risk": 0.0,
+        "estimated_energy_needed_kwh": 9.18,
+        "heuristic_priority_score": 0.3135
       }
     ]
   },
   "candidate_vehicles": [
     {
-      "vehicle_id": "vehicle_011",
-      "zone": "Z7",
-      "soc": 0.39,
-      "waiting_time": 4,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5275
-    },
-    {
-      "vehicle_id": "vehicle_031",
-      "zone": "Z6",
-      "soc": 0.39,
-      "waiting_time": 4,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5275
-    },
-    {
-      "vehicle_id": "vehicle_006",
-      "zone": "Z4",
-      "soc": 0.39,
-      "waiting_time": 3,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5175
-    },
-    {
-      "vehicle_id": "vehicle_026",
-      "zone": "Z5",
-      "soc": 0.39,
-      "waiting_time": 3,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5175
-    },
-    {
-      "vehicle_id": "vehicle_021",
-      "zone": "Z3",
-      "soc": 0.39,
-      "waiting_time": 2,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5075
-    },
-    {
-      "vehicle_id": "vehicle_041",
-      "zone": "Z9",
-      "soc": 0.39,
-      "waiting_time": 2,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5075
-    },
-    {
       "vehicle_id": "vehicle_001",
-      "zone": "Z10",
+      "zone": "Z1",
       "soc": 0.39,
       "waiting_time": 2,
-      "future_demand": 6.0,
+      "future_demand": 2.0,
       "availability_risk": 0.0,
       "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.5035
+      "heuristic_priority_score": 0.516
     },
     {
-      "vehicle_id": "vehicle_016",
+      "vehicle_id": "vehicle_002",
+      "zone": "Z1",
+      "soc": 0.4,
+      "waiting_time": 0,
+      "future_demand": 2.0,
+      "availability_risk": 0.0,
+      "estimated_energy_needed_kwh": 24.0,
+      "heuristic_priority_score": 0.4925
+    },
+    {
+      "vehicle_id": "vehicle_003",
+      "zone": "Z1",
+      "soc": 0.51,
+      "waiting_time": 0,
+      "future_demand": 2.0,
+      "availability_risk": 0.0,
+      "estimated_energy_needed_kwh": 17.4,
+      "heuristic_priority_score": 0.454
+    },
+    {
+      "vehicle_id": "vehicle_000",
+      "zone": "Z1",
+      "soc": 0.647,
+      "waiting_time": 1,
+      "future_demand": 2.0,
+      "availability_risk": 0.0,
+      "estimated_energy_needed_kwh": 9.18,
+      "heuristic_priority_score": 0.4161
+    },
+    {
+      "vehicle_id": "vehicle_005",
       "zone": "Z2",
-      "soc": 0.39,
-      "waiting_time": 1,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.4975
-    },
-    {
-      "vehicle_id": "vehicle_036",
-      "zone": "Z8",
-      "soc": 0.39,
-      "waiting_time": 1,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 24.6,
-      "heuristic_priority_score": 0.4975
-    },
-    {
-      "vehicle_id": "vehicle_007",
-      "zone": "Z4",
-      "soc": 0.5,
-      "waiting_time": 4,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 18.0,
-      "heuristic_priority_score": 0.489
-    },
-    {
-      "vehicle_id": "vehicle_027",
-      "zone": "Z5",
-      "soc": 0.5,
-      "waiting_time": 4,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 18.0,
-      "heuristic_priority_score": 0.489
-    },
-    {
-      "vehicle_id": "vehicle_022",
-      "zone": "Z3",
-      "soc": 0.5,
-      "waiting_time": 3,
-      "future_demand": 6.0,
-      "availability_risk": 1.0,
-      "estimated_energy_needed_kwh": 18.0,
-      "heuristic_priority_score": 0.479
+      "soc": 0.647,
+      "waiting_time": 2,
+      "future_demand": 1.0,
+      "availability_risk": 0.0,
+      "estimated_energy_needed_kwh": 9.18,
+      "heuristic_priority_score": 0.3135
     }
   ],
   "llm_raw_json_plan": {
@@ -369,18 +157,11 @@
     "strategy_summary": "Mock LLM selected high-priority candidates while preserving near-term zone availability.",
     "actions": [],
     "rejected_candidates": [
-      "vehicle_011",
-      "vehicle_031",
-      "vehicle_006",
-      "vehicle_026",
-      "vehicle_021",
-      "vehicle_041",
       "vehicle_001",
-      "vehicle_016",
-      "vehicle_036",
-      "vehicle_007",
-      "vehicle_027",
-      "vehicle_022"
+      "vehicle_002",
+      "vehicle_003",
+      "vehicle_000",
+      "vehicle_005"
     ],
     "risk_notes": [
       "Fallback mock used deterministic ranking rather than a remote model."

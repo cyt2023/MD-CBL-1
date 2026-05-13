@@ -7,6 +7,19 @@ from src.evaluation import evaluate_results
 class EvaluationTests(unittest.TestCase):
     def test_comparison_summary_includes_all_three_strategies(self):
         results = {
+            "nearest_available": {
+                "timeseries": [
+                    {
+                        "cumulative_cost_eur": 12.0,
+                        "cumulative_unmet_demand": 6,
+                        "vehicle_availability": 0.76,
+                        "charger_utilization": 0.7,
+                        "waiting_vehicle_hours": 3,
+                        "average_soc": 0.57,
+                        "minimum_soc": 0.2,
+                    }
+                ]
+            },
             "baseline": {
                 "timeseries": [
                     {
@@ -48,4 +61,6 @@ class EvaluationTests(unittest.TestCase):
             },
         }
         summary = evaluate_results(results, Path.cwd())
-        self.assertEqual({row["scheduler_mode"] for row in summary}, {"baseline", "smart_priority", "agentic_llm"})
+        self.assertEqual({row["scheduler_mode"] for row in summary}, {"nearest_available", "baseline", "smart_priority", "agentic_llm"})
+        agentic = next(row for row in summary if row["scheduler_mode"] == "agentic_llm")
+        self.assertEqual(agentic["percentage_cost_reduction_vs_nearest_available"], 33.33)

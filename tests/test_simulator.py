@@ -69,7 +69,7 @@ class SimulatorTests(unittest.TestCase):
         fleet_assets = build_fleet_and_chargers(preprocessed, demand_model, config)
         simulator = Simulator(config, demand_model, fleet_assets, preprocessed, Path.cwd())
         results = simulator.run_all()
-        self.assertEqual(set(results.keys()), {"baseline", "smart_priority", "agentic_llm"})
+        self.assertEqual(set(results.keys()), {"nearest_available", "baseline", "smart_priority", "agentic_llm"})
 
     def test_all_timeseries_have_required_columns(self):
         config = _config()

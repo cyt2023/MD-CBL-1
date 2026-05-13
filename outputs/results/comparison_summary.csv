@@ -1,4 +1,5 @@
-scheduler_mode,total_charging_cost_eur,total_charging_energy_kwh,cost_per_kwh_eur,kwh_per_eur,percentage_cost_reduction_vs_baseline,average_vehicle_availability,total_unmet_demand,unmet_demand_reduction_vs_baseline,average_charger_utilization,peak_charger_utilization,total_waiting_vehicle_hours,average_soc,minimum_soc,operational_score
-baseline,88.473,2420.0,0.0366,27.353,0.0,0.836,7,0.0,0.458,1.0,1200,0.377,0.11,37.21
-smart_priority,93.784,2565.236,0.0366,27.353,-6.0,0.889,9,-28.57,0.5,1.0,1199,0.459,0.157,31.807
-agentic_llm,89.917,2459.428,0.0366,27.352,-1.63,0.839,4,42.86,0.496,1.0,1200,0.418,0.11,48.128
+scheduler_mode,total_charging_cost_eur,total_charging_energy_kwh,cost_per_kwh_eur,kwh_per_eur,percentage_cost_reduction_vs_baseline,percentage_cost_reduction_vs_nearest_available,average_vehicle_availability,total_unmet_demand,unmet_demand_reduction_vs_baseline,unmet_demand_reduction_vs_nearest_available,average_charger_utilization,peak_charger_utilization,total_waiting_vehicle_hours,average_soc,minimum_soc,operational_score
+nearest_available,12.0,0.0,0.0,0.0,-20.0,0.0,0.76,6,-20.0,0.0,0.7,0.7,3,0.57,0.2,28.6
+baseline,10.0,0.0,0.0,0.0,0.0,16.67,0.8,5,0.0,16.67,0.6,0.6,2,0.55,0.2,39.5
+smart_priority,9.0,0.0,0.0,0.0,10.0,25.0,0.82,4,20.0,33.33,0.5,0.5,2,0.58,0.22,48.1
+agentic_llm,8.0,0.0,0.0,0.0,20.0,33.33,0.84,3,40.0,50.0,0.55,0.55,1,0.6,0.24,55.85

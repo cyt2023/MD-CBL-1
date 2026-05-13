@@ -5,7 +5,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List
 
-from .scheduler import AgenticLLMScheduler, BaselineScheduler, SmartPriorityScheduler
+from .scheduler import AgenticLLMScheduler, BaselineScheduler, NearestAvailableScheduler, SmartPriorityScheduler
 
 
 def _write_csv(path: Path, rows: List[Dict[str, object]]) -> None:
@@ -38,6 +38,8 @@ class Simulator:
     def _build_scheduler(self, mode: str):
         if mode == "baseline":
             return BaselineScheduler(self.config)
+        if mode == "nearest_available":
+            return NearestAvailableScheduler(self.config)
         if mode == "smart_priority":
             return SmartPriorityScheduler(self.config)
         if mode == "agentic_llm":
@@ -215,6 +217,7 @@ class Simulator:
         results_dir = self.project_root / "outputs" / "results"
         filename_map = {
             "baseline": "baseline_timeseries.csv",
+            "nearest_available": "nearest_available_timeseries.csv",
             "smart_priority": "smart_timeseries.csv",
             "agentic_llm": "agentic_timeseries.csv",
         }
@@ -228,6 +231,6 @@ class Simulator:
 
     def run_all(self) -> Dict[str, Dict[str, object]]:
         results = {}
-        for mode in ("baseline", "smart_priority", "agentic_llm"):
+        for mode in ("nearest_available", "baseline", "smart_priority", "agentic_llm"):
             results[mode] = self.run_mode(mode)
         return results

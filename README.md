@@ -17,10 +17,11 @@ The current implementation runs a 24-hour simulation over the Eindhoven fleet sc
 
 ## Scheduler Modes
 
-The system supports three modes:
+The system supports four modes:
 
 | Mode | Description | Requires LLM |
 |---|---|---|
+| `nearest_available` | Naive individual behavior: vehicles that want charging use the same-zone or next available charger without fleet-level planning. | No |
 | `baseline` | Fixed threshold scheduler. Vehicles below a SOC threshold are charged. | No |
 | `smart_priority` | Deterministic priority scheduler using SOC, demand, availability risk, waiting time, price, and congestion weights. | No |
 | `agentic_llm` | Agentic planner that observes state, proposes structured actions, receives deterministic validation, repairs or falls back, and logs decision traces. | Optional |
@@ -53,10 +54,11 @@ The agentic behavior is implemented mainly in:
 
 ## Why Use an Agentic Scheduler
 
-A normal charging planner can be implemented as a rule, a weighted heuristic, or a mathematical optimizer. Those approaches are valuable, and this project keeps them as baselines. However, shared EV fleet charging is a dynamic operational problem: demand changes by zone, vehicles have different SOC and waiting times, charger availability changes, and operators need decisions that can be explained after the fact.
+A normal charging planner can be implemented as individual nearest-charger behavior, a rule, a weighted heuristic, or a mathematical optimizer. Those approaches are valuable, and this project keeps them as baselines. However, shared EV fleet charging is a dynamic operational problem: demand changes by zone, vehicles have different SOC and waiting times, charger availability changes, and operators need decisions that can be explained after the fact.
 
 The agentic design is useful because it combines flexible planning with deterministic control:
 
+- Compared with naive nearest-available charging, the agent plans for the fleet as a system rather than letting every vehicle consume charger capacity independently.
 - Compared with a fixed rule, the agent can adapt its strategy to the current system state instead of applying the same threshold at every timestep.
 - Compared with a simple weighted heuristic, the agent can express a higher-level operational rationale, such as preserving availability in high-demand zones while using spare charging capacity for shallow top-ups.
 - Compared with a one-shot LLM answer, the agent is safer because every proposed action is schema-checked, constraint-checked, and either repaired or rejected before execution.
@@ -95,11 +97,14 @@ Latest deterministic fallback/mock run:
 
 | Scheduler | Cost (EUR) | Charged Energy (kWh) | Unmet Demand | Avg Availability | Operational Score |
 |---|---:|---:|---:|---:|---:|
+| `nearest_available` | 90.097 | 2464.376 | 29 | 0.775 | 10.043 |
 | `baseline` | 88.473 | 2420.000 | 7 | 0.836 | 37.210 |
 | `smart_priority` | 93.784 | 2565.236 | 9 | 0.889 | 31.807 |
 | `agentic_llm` | 89.917 | 2459.428 | 4 | 0.839 | 48.128 |
 
-In this run, the agentic scheduler charges more energy than the baseline while reducing unmet demand from 7 to 4. Because the first 24-hour electricity price window is effectively constant, lower total cost and higher total kWh cannot both be guaranteed against the same baseline. The implemented objective is therefore to improve operational value per euro: more useful charging, fewer missed requests, and traceable decisions with cost close to baseline.
+In this run, naive nearest-available charging costs EUR 90.097 and leaves 29 units of unmet demand. The agentic scheduler costs EUR 89.917, which is 0.2% cheaper than nearest-available charging, while reducing unmet demand from 29 to 4. It also charges more energy than the threshold baseline while reducing unmet demand from 7 to 4. Because the first 24-hour electricity price window is effectively constant, lower total cost and higher total kWh cannot both be guaranteed against every baseline. The implemented objective is therefore to improve operational value per euro: more useful charging, fewer missed requests, and traceable decisions with cost close to baseline.
+
+The `nearest_available` mode is included to answer a practical question: "What if ordinary users simply charge at the nearest available charger when they want to charge?" The comparison summary reports `percentage_cost_reduction_vs_nearest_available`, which directly shows how much the planned system saves against this naive behavior.
 
 ## Repository Structure
 
@@ -199,6 +204,7 @@ If the API key is missing, the model endpoint is unavailable, or the model retur
 After running `python3 -m src.main`, the project writes:
 
 - `outputs/results/baseline_timeseries.csv`
+- `outputs/results/nearest_available_timeseries.csv`
 - `outputs/results/smart_timeseries.csv`
 - `outputs/results/agentic_timeseries.csv`
 - `outputs/results/agentic_charging_plan.csv`

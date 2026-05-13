@@ -60,7 +60,7 @@ def _draw_line(canvas, x0, y0, x1, y1, color):
 def _plot_line_chart(path: Path, series_map: Dict[str, Sequence[float]], title_seed: int = 0) -> None:
     width, height = 900, 500
     canvas = _blank_canvas(width, height)
-    colors = [(32, 80, 120), (206, 98, 56), (72, 130, 96)]
+    colors = [(92, 74, 58), (32, 80, 120), (206, 98, 56), (72, 130, 96)]
     _draw_rect(canvas, 70, 40, 72, 430, (70, 70, 70))
     _draw_rect(canvas, 70, 428, 840, 430, (70, 70, 70))
     all_values = [value for series in series_map.values() for value in series]
@@ -89,13 +89,14 @@ def _plot_line_chart(path: Path, series_map: Dict[str, Sequence[float]], title_s
 def _plot_bar_chart(path: Path, labels: Sequence[str], values: Sequence[float]) -> None:
     width, height = 900, 500
     canvas = _blank_canvas(width, height)
-    colors = [(32, 80, 120), (206, 98, 56), (72, 130, 96)]
+    colors = [(92, 74, 58), (32, 80, 120), (206, 98, 56), (72, 130, 96)]
     _draw_rect(canvas, 70, 40, 72, 430, (70, 70, 70))
     _draw_rect(canvas, 70, 428, 840, 430, (70, 70, 70))
     max_value = max(values) if values else 1.0
     for index, value in enumerate(values):
-        x0 = 120 + (index * 220)
-        x1 = x0 + 120
+        spacing = max(120, int(680 / max(len(values), 1)))
+        x0 = 110 + (index * spacing)
+        x1 = x0 + min(110, max(55, spacing - 35))
         y1 = 420
         y0 = 420 - int((value / max(max_value, 1e-9)) * 300)
         _draw_rect(canvas, x0, y0, x1, y1, colors[index % len(colors)])
@@ -109,7 +110,7 @@ def generate_figures(
 ) -> List[Path]:
     figures_dir = project_root / "outputs" / "figures"
     figures_dir.mkdir(parents=True, exist_ok=True)
-    modes = ["baseline", "smart_priority", "agentic_llm"]
+    modes = ["nearest_available", "baseline", "smart_priority", "agentic_llm"]
     metrics = {
         "availability_over_time.png": "vehicle_availability",
         "unmet_demand_over_time.png": "cumulative_unmet_demand",

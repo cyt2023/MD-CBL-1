@@ -58,6 +58,51 @@ class BaselineScheduler:
         return decisions
 
 
+class NearestAvailableScheduler:
+    name = "nearest_available"
+
+    def __init__(self, config: Dict[str, object]):
+        self.config = config
+
+    def schedule(self, state: Dict[str, object]) -> List[Dict[str, object]]:
+        target_soc = float(self.config["target_soc"])
+        available_chargers = [charger for charger in state["chargers"] if charger["status"] == "available"]
+        charging_drivers = [
+            vehicle
+            for vehicle in state["vehicles"]
+            if vehicle["status"] == "idle" and float(vehicle["soc"]) < target_soc
+        ]
+        charging_drivers.sort(key=lambda item: (-int(item["waiting_time"]), item["zone"], item["vehicle_id"]))
+
+        decisions: List[Dict[str, object]] = []
+        for vehicle in charging_drivers:
+            if not available_chargers:
+                break
+            charger = next((item for item in available_chargers if item["zone"] == vehicle["zone"]), None)
+            if charger is None:
+                charger = available_chargers[0]
+            energy_needed = _energy_needed_to_target(vehicle, target_soc)
+            duration = _duration_hours(energy_needed, float(charger["power_kw"]))
+            decisions.append(
+                {
+                    "vehicle_id": vehicle["vehicle_id"],
+                    "charger_id": charger["charger_id"],
+                    "zone": charger["zone"],
+                    "target_soc": target_soc,
+                    "planned_duration_hours": duration,
+                    "reasoning_summary": "Naive nearest-available behavior: charge at the same-zone charger if possible.",
+                    "agent_used": "nearest_available",
+                    "llm_used": False,
+                    "fallback_used": False,
+                    "validation_errors": "",
+                    "heuristic_priority_score": 0.0,
+                    "agent_strategy_summary": "Individual vehicles seek the nearest available charger without fleet-level planning.",
+                }
+            )
+            available_chargers = [item for item in available_chargers if item["charger_id"] != charger["charger_id"]]
+        return decisions
+
+
 class SmartPriorityScheduler:
     name = "smart_priority"
 
