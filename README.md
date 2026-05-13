@@ -1,5 +1,7 @@
 # Agentic EV Charging Scheduler
 
+[中文说明 / Chinese README](README_CN.md)
+
 A reproducible, data-driven charging scheduler for shared mobility and rental EV fleets in Eindhoven. The project compares three charging strategies and adds an agentic LLM planner that proposes charging actions, while deterministic software remains the source of truth for simulation, validation, cost, and evaluation.
 
 ## Project Goal
